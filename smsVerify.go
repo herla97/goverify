@@ -1,13 +1,13 @@
 package goverify
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
+// VerifySendSMS The function of sending SMS receives the recipient's number as a parameter.
 func (t *TwilioClient) VerifySendSMS(to string) (smsResp *VerifySMSResponse, exception *Exception, err error) {
 	msgData := url.Values{}
 	client := &http.Client{}
@@ -42,17 +42,17 @@ func (t *TwilioClient) VerifySendSMS(to string) (smsResp *VerifySMSResponse, exc
 	// if err != nil {
 	// 	return smsResp, exception, err
 	// }
-	if resp.StatusCode != http.StatusCreated {
-		exception = new(Exception)
-		err = json.Unmarshal(respBody, exception)
 
-		// We aren't checking the error because we don't actually care.
-		// It's going to be passed to the client either way.
+	if resp.StatusCode != http.StatusCreated {
+		exception, err = UnmarshalException(respBody)
 		return smsResp, exception, err
 	}
 
-	smsResp = new(VerifySMSResponse)
-	err = json.Unmarshal(respBody, smsResp)
+	smsResp, err := UnmarshalVerifySMSResponse(respBody)
 
 	return smsResp, exception, err
 }
+
+// func VerifyCheckSMS() {
+
+// }
