@@ -82,7 +82,7 @@ func (t *TwilioClient) VerifyCheckSMS(to string, code string) (smsResp *VerifyCh
 		return smsResp, exception, err
 	}
 
-	if resp.StatusCode != http.StatusCreated {
+	if resp.StatusCode != http.StatusOK {
 		exception = new(Exception)
 		err = json.Unmarshal(respBody, exception)
 		return smsResp, exception, err

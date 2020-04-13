@@ -70,10 +70,10 @@ type SendCodeAttempt struct {
 // Exception Twilio Verify API errors structure
 // See more: https://www.twilio.com/docs/usage/troubleshooting/debugging-your-application
 type Exception struct {
-	Code     int64  `json:"code,string,omitempty"`
+	Code     int64  `json:"code,omitempty"`
 	Message  string `json:"message"`
 	MoreInfo string `json:"more_info"`
-	Status   int64  `json:"status,string,omitempty"`
+	Status   int64  `json:"status,omitempty"`
 }
 
 // NewVerify Enable the use of goverify functions.
