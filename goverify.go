@@ -12,9 +12,9 @@ type TwilioClient struct {
 	VerifyURL     string
 }
 
-// VerifySMSResponse Twilio Verify API response structure
+// VerifySendSMSResponse Twilio Verify API send response structure
 // See more: https://www.twilio.com/docs/verify/api/verification
-type VerifySMSResponse struct {
+type VerifySendSMSResponse struct {
 	AccountSid       string            `json:"account_sid"`
 	Amount           string            `json:"amount,omitempty"`
 	Channel          string            `json:"channel"`
@@ -29,6 +29,22 @@ type VerifySMSResponse struct {
 	To               string            `json:"to"`
 	URL              string            `json:"url"`
 	Valid            bool              `json:"valid"`
+}
+
+// VerifyCheckSMSResponse Twilio Verify API check response structure
+// See more: https://www.twilio.com/docs/verify/api/verification-check
+type VerifyCheckSMSResponse struct {
+	AccountSid  string `json:"account_sid"`
+	Amount      string `json:"amount,omitempty"`
+	Channel     string `json:"channel"`
+	DateCreated string `json:"date_created"`
+	DateUpdated string `json:"date_updated"`
+	Payee       string `json:"payee,omitempty"`
+	ServiceSid  string `json:"service_sid"`
+	Sid         string `json:"sid"`
+	Status      string `json:"status"`
+	To          string `json:"to"`
+	Valid       bool   `json:"valid"`
 }
 
 // Lookup Twilio Verify API response structure
