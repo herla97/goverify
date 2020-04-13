@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/herla97/golang-twilio/models"
+	"github.com/herla97/goverify/models"
 )
 
 func (t *TwilioClient) VerifySendSMS(to string) (smsResp *models.VerifySMSResponse, exception *models.Exception, err error) {
