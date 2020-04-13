@@ -6,11 +6,9 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-
-	"github.com/herla97/goverify/models"
 )
 
-func (t *TwilioClient) VerifySendSMS(to string) (smsResp *models.VerifySMSResponse, exception *models.Exception, err error) {
+func (t *TwilioClient) VerifySendSMS(to string) (smsResp *VerifySMSResponse, exception *Exception, err error) {
 	msgData := url.Values{}
 	client := &http.Client{}
 	urlStr := t.VerifyURL + t.TwilioService + "/Verifications"
@@ -45,7 +43,7 @@ func (t *TwilioClient) VerifySendSMS(to string) (smsResp *models.VerifySMSRespon
 	// 	return smsResp, exception, err
 	// }
 	if resp.StatusCode != http.StatusCreated {
-		exception = new(models.Exception)
+		exception = new(Exception)
 		err = json.Unmarshal(respBody, exception)
 
 		// We aren't checking the error because we don't actually care.
@@ -53,7 +51,7 @@ func (t *TwilioClient) VerifySendSMS(to string) (smsResp *models.VerifySMSRespon
 		return smsResp, exception, err
 	}
 
-	smsResp = new(models.VerifySMSResponse)
+	smsResp = new(VerifySMSResponse)
 	err = json.Unmarshal(respBody, smsResp)
 
 	return smsResp, exception, err

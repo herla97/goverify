@@ -1,4 +1,4 @@
-package models
+package goverify
 
 import "encoding/json"
 
