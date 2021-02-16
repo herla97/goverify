@@ -3,32 +3,46 @@
 ## Golang Twilio Verify API Integration
 
 ### How to use?
+It is necessary to have a Twilio account and an active Verify Service.
+See more: https://www.twilio.com/docs/verify
 
-#### VerifySendSMS
+#### VerifySend
 ```go
-	goverifyClient := goverify.NewVerify("ACCOUNT_SID", "AUTH_TOKEN", "TWILIO_SERVICE")
+	client := goverify.NewVerify(
+		"ACCOUNT_SID",
+		"AUTH_TOKEN",
+		"TWILIO_SERVICE",
+	)
 
-	resp, excep, err := goverifyClient.VerifySendSMS("+15017122661")
+	input := &goverify.VerifyInput{
+		To:      "+521234567890", // Random number, don't call :), use your own number
+		Channel: "sms",
+	}
+
+	resp, err := client.VerifySend(input)
 	if err != nil {
 		log.Fatal(err)
-	}
-	if excep != nil {
-		log.Println(excep)
 	}
 
 	log.Println(resp)
 ```
 
-#### VerifyCheckSMS
+#### VerifyCheck
 ```go
-	goverifyClient := goverify.NewVerify("ACCOUNT_SID", "AUTH_TOKEN", "TWILIO_SERVICE")
+	client := goverify.NewVerify(
+		"ACCOUNT_SID",
+		"AUTH_TOKEN",
+		"TWILIO_SERVICE",
+	)
 
-	resp, excep, err := goverifyClient.VerifyCheckSMS("+15017122661", "6082")
+	input := &goverify.VerifyInput{
+		To:      "+521234567890", // Random number, don't call :), use your own number
+		Code: "308870",
+	}
+
+	resp, err := client.VerifyCheck(input)
 	if err != nil {
 		log.Fatal(err)
-	}
-	if excep != nil {
-		log.Println(excep)
 	}
 
 	log.Println(resp)
