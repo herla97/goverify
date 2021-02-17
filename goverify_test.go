@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/herla97/goverify"
+	"github.com/herla97/goverify/v2"
 	"github.com/joho/godotenv"
 )
 

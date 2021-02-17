@@ -1,4 +1,4 @@
-module github.com/herla97/goverify
+module github.com/herla97/goverify/v2
 
 go 1.14
 
